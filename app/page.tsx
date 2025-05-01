@@ -120,6 +120,42 @@ export default function Home() {
         </div>
       </section>
 
+{/* Příklad ze stavby – Hudební škola Lisabon */}
+<section id="hudebni-skola" className="bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 py-16">
+  <div className="container mx-auto px-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      
+      {/* Obrázky vlevo */}
+      <div className="w-full h-[400px] overflow-hidden rounded-lg shadow-lg">
+        <ImageSlider images={[
+          "/Show/Show_1.jpg",
+          "/Show/Show_2.jpg",
+          "/Show/Show_3.jpg",
+          "/Show/Show_4.jpg",
+          "/Show/Show_5.jpg",
+          "/Show/Show_6.jpg",
+          "/Show/Show_7.jpg"
+        ]} alt="Hudební škola Lisabon" />
+      </div>
+
+      {/* Text napravo */}
+      <div>
+        <h2 className="text-3xl font-bold mb-4 text-gray-800">Fotogalerie z montáže</h2>
+        <h3 className="text-xl font-semibold mb-2 text-gray-700">Hudební škola Lisabon</h3>
+        <p className="mb-4 text-gray-600">
+          Systém CBG EasyPan<sup>®</sup> byl úspěšně použit při výstavbě hudební školy v Lisabonu. Díky jeho nízké hmotnosti,
+          jednoduché montáži a výborným akustickým vlastnostem byl ideální volbou pro vytvoření protipožárních oddělení mezi učebnami
+          a koncertními sály. Projekt potvrdil efektivitu a kvalitu tohoto řešení v reálných podmínkách moderní výstavby.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
       {/* Certifikace */}
       <section id="certifikace" className="section-gradient-4 py-16">
         <div className="container mx-auto px-4">
@@ -198,6 +234,8 @@ export default function Home() {
                 <h3 className="text-xl font-semibold mb-2">Sídlo společnosti</h3>
                 <p>
                   Ekostat a.s.
+                  <br />
+                  IČO: 28131070
                   <br />
                   Mánesova 459/46
                   <br />

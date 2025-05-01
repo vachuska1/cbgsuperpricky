@@ -8,7 +8,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
-import { sendContactEmail } from "@/app/actions/send-email"
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -31,7 +30,12 @@ export function ContactForm() {
 
     try {
       const formData = new FormData(e.currentTarget as HTMLFormElement)
-      const result = await sendContactEmail(formData)
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: formData,
+      })
+      const result = await response.json()
+
       setSubmitStatus(result)
 
       if (result.success && formRef.current) {
