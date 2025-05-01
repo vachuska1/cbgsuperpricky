@@ -3,6 +3,7 @@ import { ImageSlider } from "@/components/image-slider"
 import { ContactForm } from "@/components/contact-form"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
+import { ContactBar } from "@/components/ContactBar"
 
 // Placeholder images for the sliders
 const descriptionImages = Array.from(
@@ -21,6 +22,7 @@ const trafficImages = Array.from({ length: 5 }, (_, i) => `/Traffic/Traffic${i +
 
 export default function Home() {
   return (
+    <div className="root-container">
     <main className="min-h-screen flex flex-col">
       {/* Hero Section with Gradient Background */}
       <section className="gradient-background">
@@ -285,5 +287,7 @@ export default function Home() {
         </div>
       </footer>
     </main>
+    <ContactBar />
+    </div>    
   )
 }

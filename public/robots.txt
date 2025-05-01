@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /tmp/
+Sitemap: https://superpricky.cz/sitemap.xml
+
+# Googlebot speciální pravidla (volitelné)
+User-agent: Googlebot
+Allow: /images/
