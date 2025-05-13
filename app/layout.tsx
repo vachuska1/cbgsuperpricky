@@ -1,8 +1,18 @@
-import type React from "react"
+'use client'
+
+import React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { usePathname, useSearchParams } from "next/navigation"
+import Script from "next/script"
+
+declare global {
+  interface Window {
+    gtag: (command: string, event: string, params?: Record<string, any>) => void;
+  }
+}
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] })
 
@@ -54,6 +64,20 @@ export const metadata: Metadata = {
   },
 }
 
+function GoogleAnalytics() {
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+
+  React.useEffect(() => {
+    if (typeof window.gtag === "function") {
+      const url = pathname + searchParams.toString()
+      window.gtag("event", "page_view", { page_path: url })
+    }
+  }, [pathname, searchParams])
+
+  return null
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -62,6 +86,23 @@ export default function RootLayout({
   return (
     <html lang="cs" suppressHydrationWarning>
       <head>
+        {/* Google Analytics skripty */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-V0DEXLEGJW`}
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-V0DEXLEGJW');
+            `,
+          }}
+        />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -115,6 +156,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          {/* Inicializace GA pro SPA routování */}
+          <GoogleAnalytics />
         </ThemeProvider>
       </body>
     </html>
