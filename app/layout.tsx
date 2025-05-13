@@ -122,8 +122,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          {/* Inicializace GA pro SPA routování */}
-          <GoogleAnalytics />
+          {process.env.NODE_ENV === 'production' && <GoogleAnalytics />}
         </ThemeProvider>
       </body>
     </html>
